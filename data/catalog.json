@@ -1,0 +1,42 @@
+{
+  "catalog": [
+    { "id": "m1", "type": "movie", "title": "Interstellar",          "tags": ["sci-fi","space","drama","adventure"],       "rating": 8.6, "year": 2014 },
+    { "id": "m2", "type": "movie", "title": "The Dark Knight",       "tags": ["action","thriller","crime","superhero"],    "rating": 9.0, "year": 2008 },
+    { "id": "m3", "type": "movie", "title": "Inception",             "tags": ["sci-fi","thriller","mystery","adventure"],  "rating": 8.8, "year": 2010 },
+    { "id": "m4", "type": "movie", "title": "The Godfather",         "tags": ["crime","drama","classic"],                  "rating": 9.2, "year": 1972 },
+    { "id": "m5", "type": "movie", "title": "Parasite",              "tags": ["thriller","drama","social","mystery"],      "rating": 8.6, "year": 2019 },
+    { "id": "m6", "type": "movie", "title": "Avengers: Endgame",     "tags": ["action","superhero","adventure","sci-fi"],  "rating": 8.4, "year": 2019 },
+    { "id": "m7", "type": "movie", "title": "Your Name",             "tags": ["romance","anime","drama","fantasy"],        "rating": 8.4, "year": 2016 },
+    { "id": "m8", "type": "movie", "title": "Get Out",               "tags": ["horror","thriller","social","mystery"],     "rating": 7.7, "year": 2017 },
+    { "id": "b1", "type": "book",  "title": "Dune",                  "tags": ["sci-fi","adventure","politics","classic"],  "rating": 8.3, "year": 1965 },
+    { "id": "b2", "type": "book",  "title": "Sapiens",               "tags": ["history","science","non-fiction","social"], "rating": 8.0, "year": 2011 },
+    { "id": "b3", "type": "book",  "title": "The Alchemist",         "tags": ["adventure","philosophy","classic","drama"], "rating": 7.8, "year": 1988 },
+    { "id": "b4", "type": "book",  "title": "Atomic Habits",         "tags": ["self-help","science","psychology"],         "rating": 8.1, "year": 2018 },
+    { "id": "b5", "type": "book",  "title": "1984",                  "tags": ["sci-fi","politics","classic","thriller"],   "rating": 8.7, "year": 1949 },
+    { "id": "b6", "type": "book",  "title": "Harry Potter",          "tags": ["fantasy","adventure","classic","magic"],    "rating": 8.3, "year": 1997 },
+    { "id": "b7", "type": "book",  "title": "The Psychology of Money","tags": ["self-help","psychology","finance"],        "rating": 7.9, "year": 2020 },
+    { "id": "b8", "type": "book",  "title": "Crime and Punishment",  "tags": ["crime","drama","philosophy","classic"],    "rating": 8.4, "year": 1866 },
+    { "id": "s1", "type": "music", "title": "Dark Side of the Moon", "tags": ["rock","classic","psychedelic","progressive"],"rating": 9.1,"year": 1973 },
+    { "id": "s2", "type": "music", "title": "Abbey Road",            "tags": ["rock","classic","pop","alternative"],      "rating": 9.0, "year": 1969 },
+    { "id": "s3", "type": "music", "title": "To Pimp a Butterfly",   "tags": ["hip-hop","jazz","social","drama"],         "rating": 9.0, "year": 2015 },
+    { "id": "s4", "type": "music", "title": "Blonde",                "tags": ["r&b","pop","drama","alternative"],         "rating": 8.9, "year": 2016 },
+    { "id": "s5", "type": "music", "title": "Random Access Memories","tags": ["electronic","pop","funk","adventure"],     "rating": 8.8, "year": 2013 },
+    { "id": "s6", "type": "music", "title": "Thriller",              "tags": ["pop","classic","dance","horror"],          "rating": 8.5, "year": 1982 },
+    { "id": "s7", "type": "music", "title": "Led Zeppelin IV",       "tags": ["rock","classic","blues","adventure"],      "rating": 9.0, "year": 1971 },
+    { "id": "s8", "type": "music", "title": "Currents",              "tags": ["psychedelic","alternative","electronic","mystery"],"rating": 8.7,"year": 2015 },
+    { "id": "g1", "type": "game",  "title": "The Witcher 3",         "tags": ["adventure","fantasy","drama","mystery"],   "rating": 9.3, "year": 2015 },
+    { "id": "g2", "type": "game",  "title": "Portal 2",              "tags": ["sci-fi","mystery","puzzle","adventure"],   "rating": 9.5, "year": 2011 },
+    { "id": "g3", "type": "game",  "title": "Red Dead Redemption 2", "tags": ["drama","adventure","crime","classic"],     "rating": 9.7, "year": 2018 },
+    { "id": "g4", "type": "game",  "title": "Hollow Knight",         "tags": ["adventure","mystery","horror","classic"],  "rating": 9.0, "year": 2017 },
+    { "id": "g5", "type": "game",  "title": "Cyberpunk 2077",        "tags": ["sci-fi","thriller","adventure","social"],  "rating": 8.1, "year": 2020 },
+    { "id": "g6", "type": "game",  "title": "Stardew Valley",        "tags": ["romance","adventure","social","classic"],  "rating": 9.0, "year": 2016 },
+    { "id": "g7", "type": "game",  "title": "Dark Souls III",        "tags": ["horror","action","classic","mystery"],     "rating": 8.9, "year": 2016 },
+    { "id": "g8", "type": "game",  "title": "Celeste",               "tags": ["drama","adventure","self-help","classic"], "rating": 9.3, "year": 2018 }
+  ],
+  "scoring_weights": {
+    "cosine_similarity": 0.40,
+    "jaccard_similarity": 0.35,
+    "rating_normalised": 0.15,
+    "type_preference": 0.10
+  }
+}
