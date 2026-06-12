@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>AI Classification Lab</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/static/css/style.css">
+</head>
+<body>
+
+<!-- SIDEBAR NAV -->
+<aside class="sidebar" id="sidebar">
+  <div class="sidebar-brand">
+    <span class="brand-icon">⬡</span>
+    <span class="brand-text">AI<em>Lab</em></span>
+  </div>
+  <nav class="sidebar-nav">
+    <a href="#" class="nav-item active" data-page="dashboard">
+      <span class="nav-icon">◈</span> Dashboard
+    </a>
+    <a href="#" class="nav-item" data-page="models">
+      <span class="nav-icon">◉</span> Models
+    </a>
+    <a href="#" class="nav-item" data-page="dataset">
+      <span class="nav-icon">◧</span> Dataset
+    </a>
+    <a href="#" class="nav-item" data-page="predict">
+      <span class="nav-icon">◎</span> Predict
+    </a>
+    <a href="#" class="nav-item" data-page="spam">
+      <span class="nav-icon">◫</span> Spam Detector
+    </a>
+    <a href="#" class="nav-item" data-page="charts">
+      <span class="nav-icon">◱</span> Charts
+    </a>
+    <a href="#" class="nav-item" data-page="source">
+      <span class="nav-icon">◰</span> Source Code
+    </a>
+  </nav>
+  <div class="sidebar-footer">
+    <span class="tag">Python · sklearn · Flask</span>
+  </div>
+</aside>
+
+<!-- MAIN CONTENT -->
+<main class="main" id="main">
+
+  <!-- TOP BAR -->
+  <header class="topbar">
+    <button class="menu-btn" id="menuBtn">☰</button>
+    <div class="topbar-title" id="pageTitle">Dashboard</div>
+    <div class="topbar-badge">
+      <span class="dot"></span> Live
+    </div>
+  </header>
+
+  <!-- ══════════════════════════════════════════════════
+       PAGE: DASHBOARD
+  ══════════════════════════════════════════════════ -->
+  <section class="page active" id="page-dashboard">
+    <div class="hero">
+      <div class="hero-text">
+        <div class="eyebrow">Supervised Learning · Iris Dataset</div>
+        <h1>AI Data<br><em>Classification</em><br>Lab</h1>
+        <p>A full-stack machine learning project — explore the dataset, compare three classifiers, and run live predictions in your browser.</p>
+      </div>
+      <div class="hero-stats" id="heroStats">
+        <div class="stat-card"><div class="stat-num" id="statSamples">—</div><div class="stat-lbl">Samples</div></div>
+        <div class="stat-card"><div class="stat-num">3</div><div class="stat-lbl">Classes</div></div>
+        <div class="stat-card"><div class="stat-num">4</div><div class="stat-lbl">Features</div></div>
+        <div class="stat-card"><div class="stat-num" id="statBest">—</div><div class="stat-lbl">Best Accuracy</div></div>
+      </div>
+    </div>
+
+    <div class="section-label">Model Leaderboard</div>
+    <div class="card-row" id="leaderboard">
+      <div class="skeleton-card"></div>
+      <div class="skeleton-card"></div>
+      <div class="skeleton-card"></div>
+    </div>
+
+    <div class="section-label">Class Distribution</div>
+    <div class="dist-bar-wrap" id="distBar">
+      <div class="dist-label-row">
+        <span class="chip setosa">setosa</span>
+        <span class="chip versicolor">versicolor</span>
+        <span class="chip virginica">virginica</span>
+      </div>
+      <div class="dist-bars" id="distBars">
+        <div class="dist-row"><span>setosa</span><div class="bar-track"><div class="bar-fill setosa" style="width:0%"></div></div><span class="bar-count">—</span></div>
+        <div class="dist-row"><span>versicolor</span><div class="bar-track"><div class="bar-fill versicolor" style="width:0%"></div></div><span class="bar-count">—</span></div>
+        <div class="dist-row"><span>virginica</span><div class="bar-track"><div class="bar-fill virginica" style="width:0%"></div></div><span class="bar-count">—</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════════════════
+       PAGE: MODELS
+  ══════════════════════════════════════════════════ -->
+  <section class="page" id="page-models">
+    <div class="page-header">Model Performance</div>
+    <div class="models-grid" id="modelsGrid">Loading…</div>
+  </section>
+
+  <!-- ══════════════════════════════════════════════════
+       PAGE: DATASET
+  ══════════════════════════════════════════════════ -->
+  <section class="page" id="page-dataset">
+    <div class="page-header">Iris Dataset Explorer</div>
+    <div class="toolbar">
+      <label>Filter by species:
+        <select id="speciesFilter">
+          <option value="all">All</option>
+          <option value="setosa">Setosa</option>
+          <option value="versicolor">Versicolor</option>
+          <option value="virginica">Virginica</option>
+        </select>
+      </label>
+      <span class="row-count" id="rowCount">— rows</span>
+    </div>
+    <div class="table-wrap">
+      <table class="data-table" id="dataTable">
+        <thead>
+          <tr>
+            <th>#</th>
+            <th>Sepal Length</th>
+            <th>Sepal Width</th>
+            <th>Petal Length</th>
+            <th>Petal Width</th>
+            <th>Species</th>
+          </tr>
+        </thead>
+        <tbody id="dataBody">
+          <tr><td colspan="6" class="loading-cell">Loading…</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="pagination" id="pagination"></div>
+
+    <div class="section-label" style="margin-top:2rem">Feature Statistics</div>
+    <div class="stats-grid" id="statsGrid">Loading…</div>
+  </section>
+
+  <!-- ══════════════════════════════════════════════════
+       PAGE: PREDICT
+  ══════════════════════════════════════════════════ -->
+  <section class="page" id="page-predict">
+    <div class="page-header">Live Iris Predictor</div>
+    <p class="page-sub">Enter flower measurements and all three classifiers predict the species in real-time.</p>
+
+    <div class="predict-layout">
+      <div class="predict-form card">
+        <div class="form-grid">
+          <div class="form-field">
+            <label>Sepal Length (cm)</label>
+            <div class="slider-row">
+              <input type="range" min="4.0" max="8.0" step="0.1" value="5.1" id="sl" oninput="updateSlider('sl','slv')">
+              <span class="slider-val" id="slv">5.1</span>
+            </div>
+          </div>
+          <div class="form-field">
+            <label>Sepal Width (cm)</label>
+            <div class="slider-row">
+              <input type="range" min="2.0" max="4.5" step="0.1" value="3.5" id="sw" oninput="updateSlider('sw','swv')">
+              <span class="slider-val" id="swv">3.5</span>
+            </div>
+          </div>
+          <div class="form-field">
+            <label>Petal Length (cm)</label>
+            <div class="slider-row">
+              <input type="range" min="1.0" max="7.0" step="0.1" value="1.4" id="pl" oninput="updateSlider('pl','plv')">
+              <span class="slider-val" id="plv">1.4</span>
+            </div>
+          </div>
+          <div class="form-field">
+            <label>Petal Width (cm)</label>
+            <div class="slider-row">
+              <input type="range" min="0.1" max="2.5" step="0.1" value="0.2" id="pw" oninput="updateSlider('pw','pwv')">
+              <span class="slider-val" id="pwv">0.2</span>
+            </div>
+          </div>
+        </div>
+        <button class="btn-primary" id="predictBtn" onclick="runPredict()">▶ Run Prediction</button>
+
+        <div class="quick-samples">
+          <div class="qs-label">Quick samples:</div>
+          <button class="btn-sample" onclick="setSample(5.1,3.5,1.4,0.2)">Setosa</button>
+          <button class="btn-sample" onclick="setSample(6.3,3.3,4.7,1.6)">Versicolor</button>
+          <button class="btn-sample" onclick="setSample(6.7,3.0,5.2,2.3)">Virginica</button>
+        </div>
+      </div>
+
+      <div class="predict-results card" id="predictResults">
+        <div class="results-placeholder">
+          <span style="font-size:3rem">◎</span>
+          <p>Results will appear here</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════════════════
+       PAGE: SPAM DETECTOR
+  ══════════════════════════════════════════════════ -->
+  <section class="page" id="page-spam">
+    <div class="page-header">Email Spam Detector</div>
+    <p class="page-sub">Naive Bayes text classifier trained on 30 email samples.</p>
+
+    <div class="spam-layout">
+      <div class="card spam-input-card">
+        <label class="field-label">Enter email text:</label>
+        <textarea id="spamText" placeholder="Paste or type an email message…" rows="5"></textarea>
+        <button class="btn-primary" onclick="runSpam()">▶ Classify Email</button>
+
+        <div class="quick-samples" style="margin-top:1rem">
+          <div class="qs-label">Try an example:</div>
+          <button class="btn-sample" onclick="setSpamText('Win a free iPhone now click here to claim your reward')">Spam example</button>
+          <button class="btn-sample" onclick="setSpamText('The quarterly report is attached please review by Friday')">Ham example</button>
+        </div>
+      </div>
+
+      <div class="card spam-result-card" id="spamResult">
+        <div class="results-placeholder">
+          <span style="font-size:3rem">◫</span>
+          <p>Verdict will appear here</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="section-label" style="margin-top:2rem">Training Dataset (30 emails)</div>
+    <div class="table-wrap">
+      <table class="data-table">
+        <thead><tr><th>#</th><th>Email Text</th><th>Label</th></tr></thead>
+        <tbody id="spamTableBody"><tr><td colspan="3" class="loading-cell">Loading…</td></tr></tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════════════════
+       PAGE: CHARTS
+  ══════════════════════════════════════════════════ -->
+  <section class="page" id="page-charts">
+    <div class="page-header">Visualisations</div>
+    <div class="charts-grid">
+      <div class="chart-card">
+        <div class="chart-title">Model Accuracy Comparison</div>
+        <img src="/static/images/model_comparison_chart.png" alt="Model Comparison">
+      </div>
+      <div class="chart-card">
+        <div class="chart-title">Confusion Matrix (Decision Tree)</div>
+        <img src="/static/images/confusion_matrix.png" alt="Confusion Matrix">
+      </div>
+      <div class="chart-card wide">
+        <div class="chart-title">Feature Distributions by Species</div>
+        <img src="/static/images/feature_distributions.png" alt="Feature Distributions">
+      </div>
+      <div class="chart-card">
+        <div class="chart-title">Feature Correlation Heatmap</div>
+        <img src="/static/images/correlation_heatmap.png" alt="Correlation Heatmap">
+      </div>
+      <div class="chart-card">
+        <div class="chart-title">KNN — Best k Selection</div>
+        <img src="/static/images/knn_k_selection.png" alt="KNN k Selection">
+      </div>
+      <div class="chart-card wide">
+        <div class="chart-title">Decision Tree Structure</div>
+        <img src="/static/images/decision_tree.png" alt="Decision Tree">
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════════════════
+       PAGE: SOURCE CODE
+  ══════════════════════════════════════════════════ -->
+  <section class="page" id="page-source">
+    <div class="page-header">Source Code</div>
+    <div class="source-tabs">
+      <button class="tab active" onclick="loadSource('main.py', this)">main.py</button>
+      <button class="tab" onclick="loadSource('app.py', this)">app.py</button>
+      <button class="tab" onclick="loadSource('custom_dataset.py', this)">custom_dataset.py</button>
+      <button class="tab" onclick="loadSource('visualize.py', this)">visualize.py</button>
+    </div>
+    <div class="code-wrap">
+      <pre id="sourceCode" class="code-block">Loading…</pre>
+    </div>
+  </section>
+
+</main>
+
+<script src="/static/js/app.js"></script>
+</body>
+</html>
